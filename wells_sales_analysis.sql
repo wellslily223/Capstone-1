@@ -86,16 +86,21 @@ WHERE Region = 'Northeast'
 GROUP BY Transaction_Date, Region;
 
 -- 4
-SELECT Transaction_Date, COUNT(DISTINCT ID), Prod_Num, Sale_Amount, Category, State
+SELECT COUNT(Category), COUNT(Transaction_Date), Sale_Amount, State
 FROM store_sales
 FULL JOIN inventory_categories, store_locations
 WHERE State = 'Maine'
-GROUP BY ID, Prod_Num, Sale_Amount, Category
-
+GROUP BY Transaction_Date, Sale_Amount, Category, State; 
 
 -- 5 
-SELECT 
+SELECT Store_ID, State, Sale_Amount
+FROM store_sales
+FULL JOIN Store_Locations
+WHERE State = 'Maine'
+ORDER BY Sale_Amount DESC
 
 
 -- 6
 
+-- I would recommend that we focus our sales on the highest performing stores in the region (736, 851, 836, etc). 
+-- Potentially, we could pour our resources into heightening the sales of lower performing stores (Such as 910 or 903) to help them succeed, but I believe focusing on the most successful stores would be better for long-term customer engagement. 
