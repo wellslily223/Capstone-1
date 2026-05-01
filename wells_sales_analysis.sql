@@ -85,12 +85,17 @@ FULL JOIN Management
 WHERE Region = 'Northeast'
 GROUP BY Transaction_Date, Region;
 
--- 4
-SELECT COUNT(Category), COUNT(Transaction_Date), Sale_Amount, State
-FROM store_sales
-FULL JOIN inventory_categories, store_locations
+SELECT SUM(Sale_Amount), Transaction_Date, State
+FROM Store_Sales
+FULL JOIN Management
 WHERE State = 'Maine'
-GROUP BY Transaction_Date, Sale_Amount, Category, State; 
+GROUP BY Transaction_Date, Region;
+
+-- 4
+
+SELECT Transaction_Date, Sale_Amount, (SELECT DISTINCT Id)
+FROM store_sales
+GROUP BY Transaction_Date, Sale_Amount, ID;
 
 -- 5 
 SELECT Store_ID, State, Sale_Amount
